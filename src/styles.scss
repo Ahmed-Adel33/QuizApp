@@ -1,0 +1,111 @@
+
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@use '@angular/material' as mat;
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat.core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+
+
+//light theme colors for override ng mtrls palette
+$light-color-palette: (
+  50: #C5D86D,
+  100: #C5D86D,
+  200: #C5D86D,
+  300: #C5D86D,
+  400: #C5D86D,
+  500: #C5D86D, // New color added
+  600: #C5D86D,
+  700: #C5D86D,
+  800: #C5D86D,
+  900: #C5D86D,
+  A100: #C5D86D,
+  A200: #C5D86D,
+  A400: #C5D86D,
+  A700: #C5D86D,
+  contrast: (
+    50: rgba(white, 0.87),
+    100: rgba(white, 0.87),
+    200: rgba(white, 0.87),
+    300: rgba(white, 0.87),
+    400: rgba(white, 0.87),
+    500: rgba(black, 0.87), // Adjust the contrast color accordingly
+    600: rgba(white, 0.87),
+    700: rgba(white, 0.87),
+    800: rgba(white, 0.87),
+    900: rgba(white, 0.87),
+    A100: rgba(black, 0.87),
+    A200: rgba(black, 0.87),
+    A400: rgba(black, 0.87),
+    A700: rgba(black, 0.87),
+  )
+);
+$dark-color-palette: (
+  50: #1d283b,
+  100: #1a2534,
+  200: #17212d,
+  300: #141e26,
+  400: #111b1f,
+  500: #0e1621,
+  600: #0b131a,
+  700: #081013,
+  800: #050d0c,
+  900: #020604,
+  A100: #6b7380,
+  A200: #8c90a0,
+  A400: #adb1bf,
+  A700: #c0c4d0,
+  contrast: (
+    50: rgba(white, 0.87),
+    100: rgba(white, 0.87),
+    200: rgba(white, 0.87),
+    300: rgba(white, 0.87),
+    400: rgba(white, 0.87),
+    500: rgba(white, 0.87),
+    600: rgba(white, 0.87),
+    700: rgba(white, 0.87),
+    800: rgba(white, 0.87),
+    900: rgba(white, 0.87),
+    A100: rgba(black, 0.87),
+    A200: rgba(black, 0.87),
+    A400: rgba(black, 0.87),
+    A700: rgba(black, 0.87),
+  )
+);
+$Quiz-primary: mat.define-palette($dark-color-palette);
+$Quiz-accent: mat.define-palette($light-color-palette);
+
+// The warn palette is optional (defaults to red).
+$Quiz-warn: mat.define-palette(mat.$red-palette);
+
+// Create the theme object. A theme consists of configurations for individual
+// theming systems such as "color" or "typography".
+$Quiz-theme: mat.define-light-theme((
+  color: (
+    primary: $Quiz-primary,
+    accent: $Quiz-accent,
+    warn: $Quiz-warn,
+  )
+));
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include mat.all-component-themes($Quiz-theme);
+
+
+
+/* You can add global styles to this file, and also import other style files */
+@import "./assets/styles/main.scss";
+html, body { height: 100%; };
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; };
+@import 'ngx-toastr/toastr';
+
+

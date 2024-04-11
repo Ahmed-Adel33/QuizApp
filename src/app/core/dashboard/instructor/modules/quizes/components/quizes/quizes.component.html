@@ -1,0 +1,155 @@
+<section id="quiz-instructor">
+  <div class="container">
+    <div class="row gx-3 gap-3">
+      <div class="col-md-5 me-3">
+        <div class="m-3 d-flex justify-content-around gap-1">
+          <a
+            class="student-card p-4 text-center text-darkColor"
+            (click)="addEditDetailsQuizDialogue(noQuiz,true,false,false)"
+          >
+          <div class="d-flex justify-content-center">
+            <img src="../../../../../../../../assets/images/new quiz icon.svg" class="img-fluid w-60" alt="new quiz">
+          </div>
+            <h5 class="mt-2">Set up a new quiz</h5>
+          </a>
+          <a
+            class="student-card p-4 text-center text-darkColor"
+            routerLink="/dashboard/instructor/quizes/questions"
+          >
+          <div class="d-flex justify-content-center">
+            <img src="../../../../../../../../assets/images/Vault icon.svg"  class="img-fluid w-60" alt="question bank">
+          </div>
+            <h5 class="mt-2">Question Bank</h5>
+          </a>
+        </div>
+        <div class="container-fluid">
+          <div class="quiz-card">
+            <h3>Get All Quizes</h3>
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th scope="col">Title</th>
+                  <th scope="col">Code</th>
+                  <th scope="col">Schadule</th>
+                  <th scope="col">Status</th>
+                  <th scope="col">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <hr />
+                <ng-container *ngFor="let item of quizes">
+                  <tr>
+                    <td scope="row">{{ item.title | trimDescption : 5 }}</td>
+                    <td>{{ item.code }}</td>
+                    <td>{{ item.schadule | date : "dd-MM-yyy" }}</td>
+                    <td class="text-center" >
+                      <span [ngClass]="item.status=='open'?'activeStatus':'inActiveStatus'"> {{ item.status }}</span>
+                    </td>
+                    <td class="m-auto text-center pointer p-1">
+                      <a (click)="addEditDetailsQuizDialogue(item,false,false,true)"><i class="fa-solid fa-eye fs-5 i-org pointer"></i></a>
+                      <a (click)="addEditDetailsQuizDialogue(item,false,true,false)"
+                        ><i
+                          class="fa-solid fa-pen-to-square i-org px-2  fs-5 pointer"
+                        ></i
+                      ></a>
+                      <a  (click)="openDialogDelete(item)">
+                        <i class="fa-solid fa-trash-can fs-5 i-org pointer"></i>
+                      </a>
+                    </td>
+                  </tr>
+                  <hr />
+                </ng-container>
+              </tbody>
+            </table>
+            <p class="alert alert-warning w-50" role="alert" *ngIf="quizes.length ==0">
+              This is a warning No Data Found, Please add new quiz
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="m-3 quiz-card">
+          <div class="quiz-header">
+            <h4>Upcoming 5 quizzes</h4>
+            <p>Quiz directory</p>
+          </div>
+          <div *ngFor="let item of IncomingStudents" class="quiz-card p-0">
+            <div class="row">
+              <div class="col-md-3">
+                <img src="../../../../../../assets/images/img.svg" alt="" />
+              </div>
+              <div class="col-md-9 p-2">
+                <div >
+                  <h4>{{ item.title }}</h4>
+                  <p>{{ item.schadule | date : "dd/MM/yyy"}}</p>
+                </div>
+                <div class="d-flex justify-content-between pe-3">
+                  <p class="w-50">No. of student’s enrolled: {{item.participants}}</p>
+                  <a
+                  (click)="addEditDetailsQuizDialogue(item,false,false,true)"
+                    routerLink="/dashboard/instructor/quizes"
+                    class="text-darkColor float-lg-end p-2"
+                    >{{ item.status }}
+                    <i
+                      class="fa-solid fa-circle-arrow-right"
+                      style="color: #c5d86d"
+                    ></i
+                  ></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <div class="m-3 quiz-card">
+          <div class="quiz-header">
+            <h4>Completed Quizzes</h4>
+            <a
+              >Results
+              <i
+                class="fa-solid fa-circle-arrow-right"
+                style="color: #c5d86d"
+              ></i
+            ></a>
+          </div>
+          <div class="">
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th scope="col">Title</th>
+                  <th scope="col">Group name</th>
+                  <th scope="col">No. of persons in group</th>
+                  <th scope="col">Date</th>
+                </tr>
+              </thead>
+              <tbody>
+                <hr />
+                <tr>
+                  <td scope="row">Assembly language</td>
+                  <td>Mark</td>
+                  <td>Otto</td>
+                  <td>12 /02/ 2023</td>
+                </tr>
+                <hr />
+                <tr>
+                  <td scope="row">Assembly language</td>
+                  <td>Jacob</td>
+                  <td>Thornton</td>
+                  <td>12 /02/ 2023</td>
+                </tr>
+                <hr />
+                <tr>
+                  <td scope="row">Assembly language</td>
+                  <td>Larry the Bird</td>
+                  <td>Larry the Bird</td>
+                  <td>12 /02/ 2023</td>
+                </tr>
+              </tbody>
+            </table>
+            <!-- </div> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
